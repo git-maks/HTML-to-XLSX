@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Table to Excel Converter</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- If you have custom styles -->
+</head>
+<body>
+    <div class="container">
+        <h1>Convert HTML Table to Excel</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="htmlFile" name="htmlFile" accept=".txt, .html">
+            <button type="submit">Convert to Excel</button>
+        </form>
+        <div id="downloadLink" style="margin-top: 20px;"></div>
+    </div>
+
+    <script src="js/script.js"></script> <!-- JavaScript to handle the upload and download -->
+</body>
+</html>
