@@ -3,19 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Table to Excel Converter</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- If you have custom styles -->
+    <title>Table2Excel - HTML to XLSX Converter</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Convert HTML Table to Excel</h1>
-        <form id="uploadForm" enctype="multipart/form-data">
-            <input type="file" id="htmlFile" name="htmlFile" accept=".txt, .html">
-            <button type="submit">Convert to Excel</button>
-        </form>
-        <div id="downloadLink" style="margin-top: 20px;"></div>
+    <div class="terminal-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="ascii-title">[ TABLE2EXCEL ]</div>
+            <p class="tagline">PROFESSIONAL TABLE CONVERSION UTILITY</p>
+            <p class="version">VERSION 1.0.3 | BUILD 2024.07.28</p>
+        </header>
+
+        <!-- Input Method Selector -->
+        <div class="input-selector">
+            <button class="selector-btn active" data-method="upload" type="button">
+                FILE UPLOAD
+            </button>
+            <button class="selector-btn" data-method="paste" type="button">
+                PASTE HTML
+            </button>
+        </div>
+
+        <!-- File Upload Area -->
+        <div class="input-area active" id="uploadArea">
+            <label class="input-label">SELECT HTML FILE OR DRAG & DROP</label>
+            <div class="file-upload-zone" id="fileDropZone">
+                <span class="upload-icon">▼</span>
+                <div class="upload-text">CLICK TO BROWSE OR DROP FILE HERE</div>
+                <div class="upload-hint">ACCEPTED: .html, .htm, .txt | MAX SIZE: 10MB</div>
+                <input type="file" id="htmlFile" accept=".html,.htm,.txt">
+            </div>
+            <div class="file-info" id="fileInfo">
+                <div id="fileName"></div>
+                <div id="fileSize"></div>
+                <div id="tableCount"></div>
+            </div>
+        </div>
+
+        <!-- HTML Paste Area -->
+        <div class="input-area" id="pasteArea">
+            <label class="input-label">PASTE YOUR HTML CODE BELOW</label>
+            <div class="paste-container">
+                <textarea 
+                    id="htmlPaste" 
+                    placeholder="<table>&#10;  <tr>&#10;    <th>Column 1</th>&#10;    <th>Column 2</th>&#10;  </tr>&#10;  <tr>&#10;    <td>Data 1</td>&#10;    <td>Data 2</td>&#10;  </tr>&#10;</table>"
+                    maxlength="5000000"></textarea>
+                <div class="char-counter">
+                    <span id="charCount">0</span> / 5,000,000 CHARACTERS
+                </div>
+            </div>
+            <div class="paste-actions">
+                <button class="btn btn-secondary" id="clearPasteBtn" type="button">CLEAR</button>
+            </div>
+        </div>
+
+        <!-- Table Selection UI (hidden by default) -->
+        <div class="table-selection" id="tableSelection">
+            <label class="input-label">MULTIPLE TABLES DETECTED - SELECT TO CONVERT</label>
+            <div id="tableOptions"></div>
+        </div>
+
+        <!-- Action Controls -->
+        <div class="action-controls">
+            <button class="btn" id="convertBtn" type="button">CONVERT TO XLSX</button>
+            <button class="btn btn-secondary" id="resetBtn" type="button">RESET</button>
+        </div>
+
+        <!-- Status/Output Section -->
+        <div class="status-section">
+            <div class="status-output" id="statusOutput">
+                <div class="status-line status-ready">SYSTEM READY<span class="cursor-blink">_</span></div>
+                <div class="status-line status-info">AWAITING INPUT...</div>
+            </div>
+            <div class="download-section" id="downloadSection">
+                <div class="status-line status-ready">CONVERSION COMPLETE!</div>
+                <a href="#" id="downloadLink" class="download-link">DOWNLOAD XLSX FILE</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>HTML-TO-XLSX CONVERTER | NO DATA TRANSMITTED | FULLY CLIENT-SIDE PROCESSING</p>
+            <p>TYPE 'HELP' FOR DOCUMENTATION | <a href="https://github.com" target="_blank">GITHUB REPO</a></p>
+        </footer>
     </div>
 
-    <script src="js/script.js"></script> <!-- JavaScript to handle the upload and download -->
+    <!-- SheetJS Library for XLSX generation -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <!-- Main Application Script -->
+    <script src="js/script.js"></script>
 </body>
 </html>
