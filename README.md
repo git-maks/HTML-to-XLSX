@@ -1,7 +1,9 @@
 # HTML-to-XLSX Converter
 
+![Screenshot](screenshot.png)
+
 **Professional Table Conversion Utility**  
-Version 1.0.0 | Build 2025.12.15
+Version 2.1.3 | Build 2024.07.28
 
 ## Overview
 
